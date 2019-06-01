@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AppRoutingModule } from "./app-routing.module";
 import { MaterialModule } from "./material.module";
 import { AppComponent } from "./app.component";
@@ -14,9 +14,15 @@ import { NewTrainingComponent } from "./training/new-training/new-training.compo
 import { PastTrainingComponent } from "./training/past-training/past-training.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { FormsModule } from "@angular/forms";
-import { HeaderComponent } from './navigation/header/header.component';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { StopTrainingComponent } from './training/current-training/stop-training.component';
+import { HeaderComponent } from "./navigation/header/header.component";
+import { SidenavListComponent } from "./navigation/sidenav-list/sidenav-list.component";
+import { StopTrainingComponent } from "./training/current-training/stop-training.component";
+import { AngularFireModule } from "angularfire2";
+import { StoreModule } from "@ngrx/store";
+import { appReducer } from "./app.reducer";
+import { AuthService } from "./auth/auth.service";
+import { TrainingService } from "./training/training.service";
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -38,10 +44,13 @@ import { StopTrainingComponent } from './training/current-training/stop-training
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({ ui: appReducer }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
-  entryComponents:[StopTrainingComponent]
+  entryComponents: [StopTrainingComponent]
 })
 export class AppModule {}
