@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     this.authService.login({
-      email: this.loginForm.value.email,
+      email: this.loginForm.value.email.trim(),
       password : this.loginForm.value.password 
     });
   }
