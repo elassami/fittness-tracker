@@ -27,7 +27,9 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.loadingSubs) {
     this.loadingSubs.unsubscribe();
+    }
   }
 
   onSubmit(form: NgForm) {
