@@ -6,7 +6,7 @@ import { PastTrainingComponent } from "./past-training/past-training.component";
 import { TrainingComponent } from "./training.component";
 import { StopTrainingComponent } from "./current-training/stop-training.component";
 import { SharedModule } from "../shared/shared.module";
-//import { TrainingRoutingModule } from "./training-routing.module";
+import { TrainingRoutingModule } from "./training-routing.module";
 
 @NgModule({
   declarations: [
@@ -14,10 +14,9 @@ import { SharedModule } from "../shared/shared.module";
     CurrentTrainingComponent,
     NewTrainingComponent,
     PastTrainingComponent,
-    StopTrainingComponent,
-    SharedModule
+    StopTrainingComponent
   ],
-  imports: [SharedModule, ReactiveFormsModule],
+  imports: [SharedModule, ReactiveFormsModule, TrainingRoutingModule],
   exports: [],
   entryComponents: [StopTrainingComponent]
 })
